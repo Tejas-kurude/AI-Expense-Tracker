@@ -12,7 +12,7 @@ class Authhandler:
     def log_jwt(user_id:str)->str:
         payload={
             "user_id":user_id,
-            "exp":int(time.time()) +900
+            "exp":int(time.time()) +900,
         }
 
         token = jwt.encode(payload,JWT_SECRETE,algorithm=JWT_ALGORITHM)

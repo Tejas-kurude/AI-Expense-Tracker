@@ -1,7 +1,10 @@
-from fastapi import APIRouter,Depends
+from fastapi import APIRouter,Depends,HTTPException
 from Schema.transaction import trasaction
+from Schema.transaction import updatetransaction
 from Authentication.authbearer import JWTbearer
 from db import transaction_collection
+from bson import ObjectId
+
 
 transactionrouter=APIRouter()
 
@@ -31,3 +34,79 @@ def showtransactions(user=Depends(JWTbearer())):
             })
     return trans
 
+@transactionrouter.patch("/updatetransaction")
+def updatetransaction(id:str,
+                      data:updatetransaction,
+                      user= Depends(JWTbearer())
+                      ):
+     
+     
+     exist = transaction_collection.find_one({
+          "_id":ObjectId(id)
+     })
+
+     if not exist:
+          raise HTTPException(
+               status_code=404,
+               detail="Transaction Not Found"
+          )
+     if (exist["User_id"]!=user["user_id"]):
+          raise HTTPException(
+               status_code=403,
+               detail="Forbidden Action.Please check Login"
+          )
+     transaction_collection.update_one({
+          "_id" : ObjectId(id)
+     },
+     {
+          "$set" : {
+               "Date":data.Date,
+               "Spend":data.Spend,
+               "For": data.For
+          }
+     }
+     
+     )
+     return{
+          "message":"Transaction Updated...."
+     }
+     
+
+
+
+@transactionrouter.delete("/deletetransaction")
+def delete(id:str,user=Depends(JWTbearer())):
+
+     exist=transaction_collection.find_one({
+          "_id":ObjectId(id)
+     })
+
+     if not exist:
+          raise HTTPException(
+               status_code=404,
+               detail="Not Found"
+
+          )
+     
+     if exist["User_id"]!=user["user_id"]:
+          raise HTTPException(
+               status_code=403,
+               detail="Action Forbidden"
+          )
+     
+     transaction_collection.delete_one(
+          {
+               "_id":ObjectId(id)
+          }
+     )
+     return{
+          "message":"Transaction Deleted...."
+     }
+     
+     pass
+     
+     
+     
+     
+
+    

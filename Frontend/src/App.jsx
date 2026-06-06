@@ -3,12 +3,16 @@ import Navbar from './components/Navbar'
 import Home from './pages/Home'
 // import AppRoutes  from './Routes/AppRoutes '
 import Dashboard from './pages/Dashboard'
+import Login from './components/Login'
 
 const App = () => {
   return (
 <>
 
-<Navbar/>
+
+<Login/>
+
+{/* <Navbar/> */}
 
 {/* <AppRoutes /> */}
 </>

@@ -11,6 +11,6 @@ class   trasaction(BaseModel):
 
 
 class updatetransaction(BaseModel):
-    Date:Optional[str]
-    Spend:Optional[float]
-    For:Optional[str]
+    Date:Optional[str]=None
+    Spend:Optional[float]=None
+    For:Optional[str]=None
