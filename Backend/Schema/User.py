@@ -22,4 +22,3 @@ class Userupdate(BaseModel):
     F_Name:Optional[str]
     L_Name:Optional[str]
     Email:Optional[EmailStr]   
-    Hashed_pass:Optional[str]

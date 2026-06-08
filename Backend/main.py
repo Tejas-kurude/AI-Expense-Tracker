@@ -25,7 +25,15 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.get('/')
+
+
+@app.get("/")
+def star():
+    return{
+        "message ": "Server is working"
+    }
+
+@app.get('/test')
 def test(user=Depends(JWTbearer())):
     return{
         "message":"Working",

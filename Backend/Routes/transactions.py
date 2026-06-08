@@ -55,15 +55,13 @@ def updatetransaction(id:str,
                status_code=403,
                detail="Forbidden Action.Please check Login"
           )
+     
+     update_data= data.model_dump(exclude_unset=True)
      transaction_collection.update_one({
           "_id" : ObjectId(id)
      },
      {
-          "$set" : {
-               "Date":data.Date,
-               "Spend":data.Spend,
-               "For": data.For
-          }
+          "$set" : update_data
      }
      
      )

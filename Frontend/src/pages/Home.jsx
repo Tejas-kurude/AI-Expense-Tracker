@@ -1,4 +1,7 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+import Login from '../components/Login'
+import SignUp from '../components/SignUp'
 
 const Home = () => {
   return (
@@ -22,10 +25,11 @@ const Home = () => {
           or simply keeping records of daily transactions, this Expense
           Tracker helps you stay on top of every rupee.
         </p>
-
+        <Link to='/login'>
         <button className="bg-emerald-500 hover:bg-emerald-600 text-white font-semibold px-8 py-3 rounded-lg shadow-lg transition duration-300">
           Start Tracking
         </button>
+        </Link>
 
         {/* Features Section */}
         <div className="grid md:grid-cols-3 gap-6 mt-16">

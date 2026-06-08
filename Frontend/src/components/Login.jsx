@@ -1,9 +1,12 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import axios from 'axios'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { Link, useNavigate } from 'react-router-dom'
+import SignUp from './SignUp'
 
 const Login = () => {
+    const navigate = useNavigate()
 
     const [user, setUser] = useState("")
     const [pass, setPass] = useState("")
@@ -26,7 +29,7 @@ const Login = () => {
             toast.success("Login Successful 🎉")
 
             console.log(res.data.token)
-
+            navigate("/home")
         } catch (err) {
 
             toast.error(
@@ -101,15 +104,31 @@ const Login = () => {
                                 className="w-full px-4 py-3 bg-slate-900 border border-slate-600 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition"
                             />
                         </div>
+                    
+                        <button onClick={()=>{
 
-                        <button
+                        }}
                             type="submit"
                             className="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-semibold py-3 rounded-lg shadow-lg transition-all duration-300"
                         >
+
                             Login
                         </button>
+        
 
                     </form>
+
+                    <p className="text-center text-slate-400 mt-6">
+                        Not Registered?{" "}
+                        <span onClick={()=>{
+                            navigate("/signup")
+                        }}
+                            className="text-emerald-400 hover:text-emerald-300 font-semibold cursor-pointer"
+                        >
+                            Sign Up
+                        </span>
+                    </p>
+
 
                 </div>
 

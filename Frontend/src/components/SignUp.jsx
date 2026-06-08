@@ -2,9 +2,11 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { Link, useNavigate } from 'react-router-dom'
+import Login from './Login'
 
 const SignUp = () => {
-
+    const navigate = useNavigate()
     const [Fname, setFname] = useState("")
     const [Lname, setLname] = useState("")
     const [Email, setEmail] = useState("")
@@ -111,8 +113,8 @@ const SignUp = () => {
                             }}
                             className="w-full px-4 py-3 bg-slate-900 border border-slate-600 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500"
                         />
-
-                        <button
+                        
+                        <button onClick={()=>navigate("/login")}
                             type="submit"
                             className="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-semibold py-3 rounded-lg shadow-lg transition-all duration-300"
                         >
@@ -120,6 +122,15 @@ const SignUp = () => {
                         </button>
 
                     </form>
+                    <p className="text-center text-slate-400 mt-6">
+                        Already Registered ?{" "}
+                        <Link
+                            to="/login"
+                            className="text-emerald-400 hover:text-emerald-300 font-semibold"
+                        >
+                            LogIn
+                        </Link>
+                    </p>
 
                 </div>
 
