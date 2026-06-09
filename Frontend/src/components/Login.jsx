@@ -1,8 +1,8 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import axios from 'axios'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import SignUp from './SignUp'
 
 const Login = () => {
@@ -10,6 +10,7 @@ const Login = () => {
 
     const [user, setUser] = useState("")
     const [pass, setPass] = useState("")
+    const location = useLocation()
 
     const login = async (u, p) => {
         try {
@@ -39,6 +40,13 @@ const Login = () => {
             console.log(err.response?.data)
         }
     }
+
+
+    useEffect(()=>{
+        if(location.state?.message){
+            toast.error(location.state.message)
+        }
+    },[])
 
     return (
         <>

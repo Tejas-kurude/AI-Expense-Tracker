@@ -7,6 +7,7 @@ import Profile from '../pages/Profile'
 import SignUp from '../components/SignUp'
 import Login from '../components/Login'
 import PostLog from '../pages/PostLog'
+import Protectedroutes from './Protectedroutes'
 
 
 const AppRoutes = () => {
@@ -14,14 +15,40 @@ const AppRoutes = () => {
 
     <Routes>
 
-      <Route path="/" element={<Home />} />
-      <Route path="/home" element={<PostLog />} />
-      <Route path="/transaction" element={<Transactions />} />
-      <Route path="/dashboard" element={<Dashboard />} />
-      <Route path="/profile" element={<Profile />} />
+      <Route path="/" element={
+        <Protectedroutes>
+        <Home />
+      </Protectedroutes>
+      } />
+
+      <Route path="/home" element={
+        <Protectedroutes>
+          <PostLog />
+        </Protectedroutes>
+      } />
+
+      <Route path="/transaction" element={
+        <Protectedroutes>
+          <Transactions />
+        </Protectedroutes>
+      } />
+
+      <Route path="/dashboard" element={
+        <Protectedroutes>
+          <Dashboard />
+        </Protectedroutes>
+      } />
+
+      <Route path="/profile" element={
+        <Protectedroutes>
+          <Profile />
+        </Protectedroutes>
+      } />
+
       <Route path="/login" element={<Login />} />
+
       <Route path="/signup" element={<SignUp />} />
-      
+
 
     </Routes>
 
